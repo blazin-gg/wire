@@ -86,3 +86,17 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#WireDynamicButtonTool_toggle", "wire_dynamic_button_toggle")
 	panel:CheckBox("#WireDynamicButtonTool_entityout", "wire_dynamic_button_entityout")
 end
+
+local ALLOWED_MODELS = {
+	ModelPlug.GetListAsLookup("Wire_dynamic_button_Models"),
+	ModelPlug.GetListAsLookup("Wire_bdynamic_button_small_Models")
+}
+function TOOL:CanUseModel(model)
+	for _, tbl in ipairs(ALLOWED_MODELS) do
+		if tbl[model] then
+			return true
+		end
+	end
+
+	return false
+end

@@ -78,3 +78,8 @@ function TOOL.BuildCPanel(panel)
 	WireDermaExts.ModelSelect(panel, "wire_cd_ray_Model", list.Get( "Wire_Laser_Tools_Models" ), 1)
 	panel:NumSlider("Range","wire_cd_ray_Range",1,512,2)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Laser_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

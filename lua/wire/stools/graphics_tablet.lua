@@ -44,3 +44,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#Tool_wire_graphics_tablet_draw_background", "wire_graphics_tablet_draw_background")
 	panel:CheckBox("#Tool_wire_graphics_tablet_createflat", "wire_graphics_tablet_createflat")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WireScreenModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

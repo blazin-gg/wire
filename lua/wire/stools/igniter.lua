@@ -32,3 +32,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#WireIgniterTool_trgply", "wire_igniter_trgply")
 	panel:NumSlider("#WireIgniterTool_Range", "wire_igniter_range", 1, 10000, 0)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Laser_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

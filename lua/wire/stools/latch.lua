@@ -23,6 +23,10 @@ function TOOL:LeftClick( trace )
 	// If there's no physics object then we can't constraint it!
 	if SERVER and not util.IsValidPhysicsObject( trace.Entity, trace.PhysicsBone ) then return false end
 
+	if not self:CanUseModel(self:GetClientInfo("model")) then
+		return false
+	end
+
 	local iNum = self:NumObjects()
 
 	local Phys = trace.Entity:GetPhysicsObjectNum( trace.PhysicsBone )
@@ -101,3 +105,8 @@ function TOOL.BuildCPanel( panel )
 	panel:AddControl( "Header", { Text = "#Tool.wire_latch.name", Description = "#Tool.wire_latch.desc" } )
 	WireDermaExts.ModelSelect(panel, "wire_latch_model", list.Get( "Wire_Misc_Tools_Models" ), 1)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Misc_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

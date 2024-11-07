@@ -108,3 +108,8 @@ if CLIENT then
 		panel:AddItem( matchlist )
 	end
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Misc_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

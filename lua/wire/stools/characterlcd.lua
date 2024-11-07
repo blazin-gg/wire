@@ -65,3 +65,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#Create Flat to Surface", "wire_characterlcd_createflat")
 
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WireScreenModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

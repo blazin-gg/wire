@@ -72,6 +72,7 @@ end
 
 -- shared includes
 include("wire/sh_modelplug.lua")
+include("wire/client/cl_modelplug.lua") --lol
 include("wire/wireshared.lua")
 include("wire/wirenet.lua")
 include("wire/wire_paths.lua")
@@ -94,7 +95,6 @@ end
 -- client includes
 if CLIENT then
 	include("wire/client/cl_wirelib.lua")
-	include("wire/client/cl_modelplug.lua")
 	include("wire/client/cl_wire_map_interface.lua")
 	include("wire/client/wiredermaexts.lua")
 	include("wire/client/wiremenus.lua")

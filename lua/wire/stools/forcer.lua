@@ -41,3 +41,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("Show beam", "wire_forcer_beam")
 	panel:CheckBox("Apply reaction force", "wire_forcer_reaction")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Forcer_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

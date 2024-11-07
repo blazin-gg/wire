@@ -73,3 +73,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#Tool.wire_ranger.out_hnrm","wire_ranger_out_hnrm")
 	panel:CheckBox("#Tool.wire_ranger.hires","wire_ranger_hires")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Laser_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

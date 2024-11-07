@@ -308,5 +308,9 @@ function TOOL.BuildCPanel( panel )
 	WireDermaExts.ModelSelect(panel, "wire_clutch_model", list.Get( "Wire_Misc_Tools_Models" ), 1)
 end
 
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Misc_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end
 
 if CLIENT then return end

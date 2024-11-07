@@ -23,3 +23,8 @@ function TOOL.BuildCPanel(panel)
 	WireToolHelpers.MakeModelSizer(panel, "wire_watersensor_modelsize")
 	ModelPlug_AddToCPanel(panel, "WaterSensor", "wire_watersensor")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_WaterSensor_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

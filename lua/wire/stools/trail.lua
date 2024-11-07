@@ -24,3 +24,8 @@ function TOOL.BuildCPanel(panel)
 	WireToolHelpers.MakePresetControl(panel, "wire_trail")
 	panel:AddControl( "MatSelect", { Height = "2", ConVar = "wire_trail_material", Options = list.Get( "trail_materials" ), ItemWidth = 64, ItemHeight = 64 } )
 end
+
+local ALLOWED_MODEL = "models/jaanus/wiretool/wiretool_range.mdl"
+function TOOL:CanUseModel(model)
+	return model == ALLOWED_MODEL
+end

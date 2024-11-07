@@ -18,3 +18,8 @@ function TOOL.BuildCPanel(panel)
 	ModelPlug_AddToCPanel(panel, "Misc_Tools", "wire_locator")
 	panel:CheckBox("#Create Flat to Surface", "wire_locator_createflat")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Misc_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

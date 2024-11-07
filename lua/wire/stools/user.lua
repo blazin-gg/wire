@@ -23,3 +23,8 @@ function TOOL.BuildCPanel( panel )
 	ModelPlug_AddToCPanel(panel, "Laser_Tools", "wire_user", true)
 	panel:NumSlider("#tool.wire_user.range", "wire_user_range", 1, 1000, 1)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Laser_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

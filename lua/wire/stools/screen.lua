@@ -62,3 +62,8 @@ function TOOL.BuildCPanel(panel)
 	panel:TextEntry("#Tool_wire_screen_textb", "wire_screen_textb")
 	panel:CheckBox("#Tool_wire_screen_createflat", "wire_screen_createflat")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WireScreenModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

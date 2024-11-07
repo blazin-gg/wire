@@ -17,6 +17,7 @@ if SERVER then
 	end
 end
 
+local ALLOWED_MODEL = "models/jaanus/wiretool/wiretool_speed.mdl"
 TOOL.Model = "models/jaanus/wiretool/wiretool_speed.mdl"
 TOOL.ClientConVar = {
 	xyz_mode = 0,
@@ -27,3 +28,7 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#Tool_wire_speedometer_xyz_mode", "wire_speedometer_xyz_mode")
 	panel:CheckBox("#Tool_wire_speedometer_angvel", "wire_speedometer_AngVel")
 end
+
+function TOOL:CanUseModel(model)
+	return model == ALLOWED_MODEL
+end

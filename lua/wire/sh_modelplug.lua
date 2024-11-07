@@ -1,5 +1,14 @@
 
 ModelPlug = ModelPlug or {}
+
+function ModelPlug.GetListAsLookup(listName)
+	local lookup = {}
+	for _, model in ipairs(list.Get(listName)) do
+		lookup[model] = true
+	end
+	return lookup
+end
+
 local list_set = list.Set
 
 function ModelPlug.ListAddModels( listName, models, value )

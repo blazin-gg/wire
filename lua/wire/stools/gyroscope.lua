@@ -27,3 +27,8 @@ function TOOL.BuildCPanel(panel)
 	ModelPlug_AddToCPanel(panel, "gyroscope", "wire_gyroscope")
 	panel:CheckBox("#Tool.wire_gyroscope.out180","wire_gyroscope_out180")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_gyroscope_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

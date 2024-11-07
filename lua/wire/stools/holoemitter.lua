@@ -64,3 +64,8 @@ function TOOL.BuildCPanel( panel )
 	panel:Help( "#Tool.wire_holoemitter.fadetime.description" )
 	panel:CheckBox("#Tool.wire_holoemitter.keeplatestdot", "wire_holoemitter_keeplatestdot")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Misc_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

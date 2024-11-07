@@ -22,3 +22,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#Create Flat to Surface", "wire_consolescreen_createflat")
 	panel:Help("CharParam is LBBBFFF format: background and foreground colour of the character (one digit each for RGB), if L is nonzero the char flashes")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WireScreenModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

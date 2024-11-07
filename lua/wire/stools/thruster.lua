@@ -155,3 +155,8 @@ function TOOL.BuildCPanel(panel)
 end
 --from model pack 1
 list.Set( "ThrusterModels", "models/jaanus/thruster_flat.mdl", {} )
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("ThrusterModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

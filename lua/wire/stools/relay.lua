@@ -103,3 +103,8 @@ function TOOL.BuildCPanel(panel)
 	})
 
 end
+
+local ALLOWED_MODEL = "models/kobilica/relay.mdl"
+function TOOL:CanUseModel(model)
+	return model == ALLOWED_MODEL
+end

@@ -135,3 +135,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox(	"#WireTargetFinderTool_checkbuddylist","wire_target_finder_checkbuddylist")
 	panel:CheckBox(	"#WireTargetFinderTool_onbuddylist","wire_target_finder_onbuddylist")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_TargetFinder_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

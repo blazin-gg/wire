@@ -79,6 +79,10 @@ function TOOL:LeftClick( trace )
 	if not trace.Hit or ( trace.Entity:IsValid() and trace.Entity:IsPlayer() ) then return end
 	if ( SERVER and not util.IsValidPhysicsObject( trace.Entity, trace.PhysicsBone ) ) then return false end
 
+	if not self:CanUseModel(self:GetClientInfo("model")) then
+		return false
+	end
+
 	local iNum = self:NumObjects()
 
 	-- Update existing constraint
@@ -207,3 +211,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("#Tool.wire_hydraulic.width","wire_hydraulic_width",1,20,2)
 	panel:AddControl( "RopeMaterial", { Label = "#Tool.wire_hydraulic.material", convar = "wire_hydraulic_material" } )
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Hydraulic_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

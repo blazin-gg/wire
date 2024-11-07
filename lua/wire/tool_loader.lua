@@ -30,6 +30,10 @@ function WireToolObj:LeftClick( trace )
 	if not trace.HitPos or trace.Entity:IsPlayer() or trace.Entity:IsNPC() or (SERVER and not util.IsValidPhysicsObject( trace.Entity, trace.PhysicsBone )) then return false end
 	if self.NoLeftOnClass and trace.HitNonWorld and (trace.Entity:GetClass() == self.WireClass or NoGhostOn(self, trace)) then return false end
 
+	if not self:CanUseModel(self:GetModel()) then
+		return false
+	end
+
 	if CLIENT then return true end
 
 	local ply = self:GetOwner()
@@ -37,6 +41,10 @@ function WireToolObj:LeftClick( trace )
 	local ent = self:LeftClick_Make( trace, ply ) -- WireToolObj.LeftClick_Make will be called if another function was not defined
 
 	return self:LeftClick_PostMake( ent, ply, trace )
+end
+
+function WireToolObj:CanUseModel(model)
+	return false
 end
 
 if SERVER then

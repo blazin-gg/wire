@@ -23,3 +23,8 @@ TOOL.ReloadSetsModel = true
 function TOOL.BuildCPanel(panel)
 	ModelPlug_AddToCPanel(panel, "Gimbal", "wire_gimbal", true)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Gimbal_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

@@ -87,3 +87,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("#Tool_wire_dataplug_weldforce", "wire_dataplug_weldforce", 0, 100000)
 	panel:NumSlider("#Tool_wire_dataplug_attachrange", "wire_dataplug_attachrange", 1, 100)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Socket_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

@@ -57,3 +57,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("#WireDualInputTool_value_off", "wire_dual_input_value_off", -10, 10, 1)
 	panel:NumSlider("#WireDualInputTool_value_on2", "wire_dual_input_value_on2", -10, 10, 1)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Numpad_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

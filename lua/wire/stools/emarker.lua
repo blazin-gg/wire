@@ -26,6 +26,10 @@ function TOOL:LeftClick(trace)
 	self:SetStage(0)
 	local ply = self:GetOwner()
 
+	if not self:CanUseModel(self:GetClientInfo("model")) then
+		return false
+	end
+
 	if ( trace.Entity:GetClass() == "gmod_wire_emarker" ) then
 		self.marker = trace.Entity
 
@@ -96,3 +100,8 @@ end
 function TOOL.BuildCPanel(panel)
 	ModelPlug_AddToCPanel(panel, "Misc_Tools", "wire_emarker")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Misc_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

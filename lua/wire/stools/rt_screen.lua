@@ -47,3 +47,7 @@ function TOOL.BuildCPanel(panel)
     panel:Help("#tool.wire_rt_screen.settings.hint_clientside")
     panel:NumSlider("#tool.wire_rt_screen.settings.cl_renderdistance", "wire_rt_screen_renderdistance", 0, 999999, 0)
 end
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WireScreenModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

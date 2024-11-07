@@ -94,3 +94,7 @@ function TOOL.BuildCPanel( CPanel )
 	CPanel:NumSlider("#Delay", "wire_turret_delay", 0, 1.0, 2)
 
 end
+
+function TOOL:CanUseModel(model)
+	return ValidTurretModels[model]
+end

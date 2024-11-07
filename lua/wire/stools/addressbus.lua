@@ -70,3 +70,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("4 size", 	"wire_addressbus_addrspace4sz", 0, 16777216, 0)
 	panel:NumSlider("4 external offset",  	"wire_addressbus_addrspace4rw", 0, 16777216, 0)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_gate_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

@@ -49,3 +49,8 @@ function TOOL.BuildCPanel(panel)
 	panel:TextEntry("#tool.wire_keypad.password", "wire_keypad_password"):SetNumeric(true)
 	panel:CheckBox("#tool.wire_keypad.secure", "wire_keypad_secure")
 end
+
+local ALLOWED_MODEL = "models/props_lab/keypad.mdl"
+function TOOL:CanUseModel(model)
+	return model = ALLOWED_MODEL
+end

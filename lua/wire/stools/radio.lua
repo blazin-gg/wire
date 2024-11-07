@@ -34,3 +34,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("#WireRadioTool_values","wire_radio_values",1,20,0)
 	panel:CheckBox("#WireRadioTool_secure","wire_radio_secure")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_radio_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

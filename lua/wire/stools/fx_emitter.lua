@@ -37,3 +37,8 @@ function TOOL.BuildCPanel( CPanel )
 
 	CPanel:NumSlider("#Tool.wire_fx_emitter.delay", "wire_fx_emitter_Delay", 0.05, 5, 2)
 end
+
+local ALLOWED_MODEL = "models/props_lab/tpplug.mdl"
+function TOOL:CanUseModel(model)
+	return model == ALLOWED_MODEL
+end

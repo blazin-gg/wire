@@ -50,3 +50,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("Inner radius (disk hole radius)","wire_cd_disk_iradius",1,48,0)
 	panel:NumSlider("Disk skin (0..8, standard disks only)","wire_cd_disk_skin",0,8,0)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Laser_Disk_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

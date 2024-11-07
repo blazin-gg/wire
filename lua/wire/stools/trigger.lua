@@ -129,3 +129,8 @@ function TOOL.BuildCPanel( panel )
 	panel:NumSlider("#Tool.wire_trigger.offsety", "wire_trigger_offsety", -1000, 1000, 0)
 	panel:NumSlider("#Tool.wire_trigger.offsetz", "wire_trigger_offsetz", -1000, 1000, 0)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Misc_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

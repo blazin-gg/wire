@@ -333,3 +333,8 @@ function TOOL:GetAngle( trace )
 	ang:RotateAroundAxis( trace.HitNormal, self:GetClientNumber( "angleoffset" ) )
 	return ang
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_gate_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

@@ -125,3 +125,8 @@ function TOOL.BuildCPanel( panel )
 	panel:CheckBox("#Tool_wire_plug_drawoutline", "wire_plug_drawoutline")
 	panel:NumSlider( "#Tool_wire_plug_angleoffset","wire_plug_angleoffset", 0, 360, 0 )
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Socket_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

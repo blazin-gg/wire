@@ -19,8 +19,9 @@ if SERVER then
 	-- Uses default WireToolObj:MakeEnt's WireLib.MakeWireEnt function
 end
 
+local ALLOWED_MODEL = "models/props_wasteland/tram_leverbase01.mdl"
 function TOOL:GetModel()
-	return "models/props_wasteland/tram_leverbase01.mdl"
+	return ALLOWED_MODEL
 end
 
 TOOL.ClientConVar = {
@@ -32,3 +33,7 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("#Tool.wire_lever.minvalue", "wire_lever_min", -10, 10, 2 )
 	panel:NumSlider("#Tool.wire_lever.maxvalue", "wire_lever_max", -10, 10, 2 )
 end
+
+function TOOL:CanUseModel(model)
+	return model == ALLOWED_MODEL
+end

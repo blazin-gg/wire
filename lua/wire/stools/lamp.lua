@@ -164,3 +164,8 @@ function TOOL.BuildCPanel(panel)
 		MatSelect:AddMaterial( v.Name or k, k )
 	end
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("LampModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

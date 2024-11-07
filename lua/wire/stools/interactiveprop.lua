@@ -27,3 +27,8 @@ function TOOL.BuildCPanel(panel)
 	panel:AddControl("Header",{Description="Opens a UI panel which controls outputs for use with the wire system."})
 	ModelPlug_AddToCPanel(panel, "InteractiveProp", "wire_interactiveprop", true)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_InteractiveProp_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

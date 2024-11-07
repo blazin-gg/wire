@@ -28,3 +28,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("Height", "wire_digitalscreen_height", 1, 512, 0)
 	panel:CheckBox("#Create Flat to Surface", "wire_digitalscreen_createflat")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WireScreenModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

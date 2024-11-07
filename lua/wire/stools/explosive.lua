@@ -82,3 +82,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#Tool.wire_explosive.coloreffect","wire_explosive_coloreffect")
 	panel:CheckBox("#Tool.wire_explosive.invisibleatzero","wire_explosive_invisibleatzero")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Explosive_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

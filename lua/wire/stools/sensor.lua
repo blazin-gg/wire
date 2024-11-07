@@ -35,7 +35,8 @@ TOOL.ClientConVar[ "direction_normalized" ] = "0"
 TOOL.ClientConVar[ "target_velocity" ] = "0"
 TOOL.ClientConVar[ "velocity_normalized" ] = "0"
 
-TOOL.Model = "models/props_lab/huladoll.mdl"
+local ALLOWED_MODEL = "models/props_lab/huladoll.mdl"
+TOOL.Model = ALLOWED_MODEL
 
 WireToolSetup.SetupLinking(true, "beacon")
 
@@ -49,3 +50,7 @@ function TOOL.BuildCPanel( panel )
 	panel:CheckBox("#WireSensorTool_target_velocity", "wire_sensor_target_velocity")
 	panel:CheckBox("#WireSensorTool_velocity_normalized", "wire_sensor_velocity_normalized")
 end
+
+function TOOL:CanUseModel(model)
+	return model == ALLOWED_MODEL
+end

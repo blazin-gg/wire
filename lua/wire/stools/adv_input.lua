@@ -51,3 +51,8 @@ function TOOL.BuildCPanel( panel )
 	panel:NumSlider("#WireAdvInputTool_value_start", "wire_adv_input_value_start", -50, 50, 0)
 	panel:NumSlider("#WireAdvInputTool_speed", "wire_adv_input_speed", 0.1, 50, 1)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Numpad_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

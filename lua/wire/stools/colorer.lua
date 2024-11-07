@@ -31,3 +31,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#WireColorerTool_outColor", "wire_colorer_outColor")
 	panel:NumSlider("#WireColorerTool_Range", "wire_colorer_Range", 1, 10000, 2)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Laser_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

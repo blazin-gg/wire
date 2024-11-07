@@ -24,3 +24,8 @@ function TOOL.BuildCPanel(panel)
 	WireToolHelpers.MakeModelSizer(panel, "wire_gps_modelsize")
 	ModelPlug_AddToCPanel(panel, "GPS", "wire_gps")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_GPS_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

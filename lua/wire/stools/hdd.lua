@@ -313,3 +313,8 @@ function TOOL.BuildCPanel(panel)
 	})
 
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_gate_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

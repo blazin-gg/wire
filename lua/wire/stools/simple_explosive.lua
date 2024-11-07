@@ -42,3 +42,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("#Tool.simple_explosive.radius", "wire_simple_explosive_radius", 1, 1500, 0 )
 	panel:CheckBox("#Tool.simple_explosive.removeafter","wire_simple_explosive_removeafter")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Explosive_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

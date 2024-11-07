@@ -74,6 +74,10 @@ function TOOL:LeftClick( trace )
 	-- If there's no physics object then we can't constraint it!
 	if SERVER and not util.IsValidPhysicsObject( trace.Entity, trace.PhysicsBone ) then return false end
 
+	if not self:CanUseModel(self:GetClientInfo("model")) then
+		return false
+	end
+
 	local iNum = self:NumObjects()
 	local Phys = trace.Entity:GetPhysicsObjectNum( trace.PhysicsBone )
 
@@ -210,17 +214,21 @@ TOOL.ClientConVar = {
 	model = "models/jaanus/wiretool/wiretool_siren.mdl"
 }
 
-function TOOL.BuildCPanel(panel)
-	local models = {
+local ALLOWED_MODELS = {
 		["models/jaanus/wiretool/wiretool_siren.mdl"] = true,
 		["models/jaanus/wiretool/wiretool_controlchip.mdl"] = true,
 		["models/fasteroid/inductor.mdl"] = true
 	}
 
-	WireDermaExts.ModelSelect( panel, "wire_motor_model", models, 1 )
+function TOOL.BuildCPanel(panel)
+	WireDermaExts.ModelSelect( panel, "wire_motor_model", ALLOWED_MODELS, 1 )
 	panel:NumSlider( "#WireMotorTool_torque", "wire_motor_torque", 0, 10000, 5 )
 	panel:NumSlider( "#WireMotorTool_forcelimit", "wire_motor_forcelimit", 0, 50000, 10 )
 	panel:NumSlider( "#WireMotorTool_friction", "wire_motor_friction", 0, 100, 1 )
 	panel:NumSlider( "#WireMotorTool_offset", "wire_motor_offset", 0, 512, 2 )
 	panel:CheckBox( "#WireMotorTool_nocollide", "wire_motor_nocollide" )
 end
+
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

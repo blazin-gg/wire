@@ -33,3 +33,8 @@ function TOOL.BuildCPanel(panel)
 		Command = "wire_output_keygroup",
 	})
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Numpad_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

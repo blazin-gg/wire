@@ -77,3 +77,7 @@ function TOOL.BuildCPanel(panel)
     panel:NumSlider("#tool.wire_rt_camera.settings.cl_skipframe", "wire_rt_camera_skip_frame_per_camera", 0, 3, 2)
     panel:Help("#tool.wire_rt_camera.settings.cl_skipframe_hint")
 end
+
+function TOOL:CanUseModel(model)
+	return MODELS[model]
+end

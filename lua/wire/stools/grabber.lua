@@ -40,3 +40,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#WireGrabberTool_Gravity", "wire_grabber_Gravity")
 	panel:NumSlider("#WireGrabberTool_Range", "wire_grabber_Range", 1, 10000, 0)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Forcer_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

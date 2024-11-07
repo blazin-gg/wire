@@ -44,3 +44,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("#Strength", "wire_hoverball_strength", .1, 20, 2)
 	panel:CheckBox("#tool.wire_hoverball.starton", "wire_hoverball_starton")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("HoverballModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

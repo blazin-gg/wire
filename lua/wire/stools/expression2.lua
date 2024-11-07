@@ -1220,3 +1220,9 @@ function TOOL:GetModel()
 	if scriptmodel and scriptmodel ~= "" and validModelCached(scriptmodel) then return Model(scriptmodel) end
 	return WireToolObj.GetModel(self)
 end
+
+
+local ALLOWED_MODEL = "models/beer/wiremod/gate_e2.mdl"
+function TOOL:CanUseModel(model)
+	return model == ALLOWED_MODEL
+end

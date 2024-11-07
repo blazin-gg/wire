@@ -110,3 +110,12 @@ function TOOL.BuildCPanel(panel)
 
 	panel:CheckBox("#ToolWire7SegTool_worldweld", "wire_7seg_worldweld")
 end
+
+local ALLOWED_MODELS = {
+	"models/segment2.mdl",
+	"models/segment.mdl",
+	"models/segment3.mdl"
+}
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

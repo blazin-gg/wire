@@ -41,3 +41,8 @@ function TOOL:Reload( trace )
 	end
 	return true
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WireTeleporterModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

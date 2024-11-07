@@ -29,3 +29,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("Range", "wire_nailer_range", 1, 2048, 0)
 	panel:CheckBox("Show Beam", "wire_nailer_beam")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Laser_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

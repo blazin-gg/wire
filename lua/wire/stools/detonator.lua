@@ -32,3 +32,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("#Damage", "wire_detonator_damage", 1, 200, 0)
 	ModelPlug_AddToCPanel(panel, "detonator", "wire_detonator", true, 1)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_detonator_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

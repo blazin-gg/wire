@@ -97,7 +97,7 @@ if (SERVER) then
 		local Type = self:GetClientNumber("type")
 		if (Type == 1) then -- Screen
 			local model = self:GetClientInfo("model")
-			if (not util.IsValidModel( model )) then return false end
+			if (not (util.IsValidModel( model ) and self:CanUseModel(model))) then return false end
 
 			ent = SpawnEGP( ply, trace.HitPos, self:GetAngle(trace), model )
 			if not IsValid(ent) then return end
@@ -300,7 +300,9 @@ if CLIENT then
 		Menu = { Panel = pnl, SingleRender = btn, SingleObjects = btn2, SingleBoth = btn3, AllRender = btn4, AllObjects = btn5, AllBoth = btn6 }
 	end
 
-	function TOOL:LeftClick( trace ) return (not trace.Entity or (trace.Entity and not trace.Entity:IsPlayer())) end
+	function TOOL:LeftClick( trace )
+		return self:CanUseModel(self:GetClientInfo("model")) and (not trace.Entity or (trace.Entity and not trace.Entity:IsPlayer()))
+	end
 	function TOOL:Reload( trace )
 
 		if (not Menu.Panel) then CreateToolReloadMenu() end
@@ -398,3 +400,8 @@ function TOOL:Think()
 	end
 	self:UpdateGhost( self.GhostEntity, self:GetOwner() )
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WireScreenModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

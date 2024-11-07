@@ -112,3 +112,8 @@ function TOOL.BuildCPanel( panel )
 	frictionPanel:SetTooltip("How quickly the wheel comes to a stop. Note: An existing wheel's friction cannot be updated")
 	panel:CheckBox("#tool.wheel.nocollide", "wire_wheel_nocollide")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WheelModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

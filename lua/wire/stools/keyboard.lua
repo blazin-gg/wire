@@ -57,3 +57,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("Use '\\n' for ENTER key instead of '\\r'","wire_keyboard_enterkeyascii")
 	panel:Help( "On: Enter=10 ('\\n')\nOff: Enter=13 ('\\r')\nThis option is serverside, and will be saved on the keyboard through duplications." )
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Keyboard_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

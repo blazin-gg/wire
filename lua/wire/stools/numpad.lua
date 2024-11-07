@@ -36,3 +36,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("#WireNumpadTool_value_on","wire_numpad_value_on",-10,10,0)
 	panel:NumSlider("#WireNumpadTool_value_off","wire_numpad_value_off",-10,10,0)
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Numpad_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

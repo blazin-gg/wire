@@ -43,6 +43,10 @@ function TOOL:LeftClick( trace )
 
 	local ply = self:GetOwner()
 
+	if not self:CanUseModel(self:GetClientInfo("model")) then
+		return false
+	end
+
 	if (numobj == 0) then
 		if IsValid(trace.Entity) and trace.Entity:IsPlayer() then return false end
 
@@ -243,3 +247,8 @@ function TOOL.BuildCPanel(panel)
 end
 
 list.Set( "ThrusterModels", "models/jaanus/wiretool/wiretool_speed.mdl", {} )
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("ThrusterModels")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

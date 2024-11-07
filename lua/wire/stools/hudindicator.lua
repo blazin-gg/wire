@@ -390,3 +390,8 @@ local function HUDIndicator_RemoteUnRegister(ply, cmd, arg)
 	end
 end
 concommand.Add("wire_hudindicator_delete", HUDIndicator_RemoteUnRegister)
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_indicator_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

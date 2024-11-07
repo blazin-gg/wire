@@ -73,3 +73,8 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider( "#Tool.wire_cam.smooth_amount", "wire_cam_smooth_amount", 4, 30, 1 )
 	panel:Help( "Smooth speed is a client side setting, and is not saved on the cam controller entity. Changing it will immediately affect all cam controllers you use." )
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Misc_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

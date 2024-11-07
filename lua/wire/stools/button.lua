@@ -49,3 +49,17 @@ function TOOL.BuildCPanel(panel)
 	panel:NumSlider("#WireButtonTool_value_on", "wire_button_value_on", -10, 10, 1)
 	panel:NumSlider("#WireButtonTool_value_off", "wire_button_value_off", -10, 10, 1)
 end
+
+local ALLOWED_MODELS = {
+	ModelPlug.GetListAsLookup("Wire_button_Models"),
+	ModelPlug.GetListAsLookup("Wire_button_small_Models")
+}
+function TOOL:CanUseModel(model)
+	for _, tbl in ipairs(ALLOWED_MODELS) do
+		if tbl[model] then
+			return true
+		end
+	end
+
+	return false
+end

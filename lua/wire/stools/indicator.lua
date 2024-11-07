@@ -121,3 +121,8 @@ function TOOL.BuildCPanel(panel)
 
 	panel:CheckBox("#ToolWireIndicator_90", "wire_indicator_rotate90")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_indicator_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

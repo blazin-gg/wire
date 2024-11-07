@@ -32,6 +32,11 @@ end
 function TOOL:LeftClick(trace)
 	if (not trace.HitPos) then return false end
 	if (trace.Entity:IsPlayer()) then return false end
+
+	if not self:CanUseModel(self:GetClientInfo("model")) then
+		return false
+	end
+
 	if ( CLIENT ) then return true end
 	if not util.IsValidPhysicsObject( trace.Entity, trace.PhysicsBone ) then return false end
 
@@ -92,3 +97,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#WireWaypointTool_alink","wire_waypoint_alink")
 	panel:CheckBox("#Create Flat to Surface", "wire_waypoint_createflat")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Misc_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

@@ -34,3 +34,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox( "#Tool.wire_textentry.disableuse", "wire_textentry_disableuse" )
 	panel:ControlHelp("Pressing use on the keyboard normally brings up the prompt. This option allows you to disable that. Useful when linked to a vehicle.")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Keyboard_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end

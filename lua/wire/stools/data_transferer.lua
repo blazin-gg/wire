@@ -37,3 +37,8 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#WireDataTransfererTool_DefaultZero", "wire_data_transferer_DefaultZero")
 	panel:CheckBox("#WireDataTransfererTool_IgnoreZero", "wire_data_transferer_IgnoreZero")
 end
+
+local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_Laser_Tools_Models")
+function TOOL:CanUseModel(model)
+	return ALLOWED_MODELS[model]
+end
