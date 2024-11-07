@@ -112,10 +112,10 @@ function TOOL.BuildCPanel(panel)
 end
 
 local ALLOWED_MODELS = {
-	"models/segment2.mdl",
-	"models/segment.mdl",
-	"models/segment3.mdl"
+	["models/segment2.mdl"] = true,
+	["models/segment.mdl"] = true,
+	["models/segment3.mdl"] = true
 }
 function TOOL:CanUseModel(model)
 	return ALLOWED_MODELS[model]
-end
+end
