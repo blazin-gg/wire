@@ -1221,8 +1221,14 @@ function TOOL:GetModel()
 	return WireToolObj.GetModel(self)
 end
 
-
-local ALLOWED_MODEL = "models/beer/wiremod/gate_e2.mdl"
+local ALLOWED_MODELS = {
+	["models/beer/wiremod/gate_e2.mdl"] = true,
+	["models/expression 2/cpu_expression.mdl"] = true,
+	["models/expression 2/cpu_microchip.mdl"] = true,
+	["models/expression 2/cpu_interface.mdl"] = true,
+	["models/expression 2/cpu_controller.mdl"] = true,
+	["models/expression 2/cpu_processor.mdl"] = true
+}
 function TOOL:CanUseModel(model)
-	return model == ALLOWED_MODEL
-end
+	return ALLOWED_MODELS[model] 
+end
