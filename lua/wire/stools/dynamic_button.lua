@@ -89,7 +89,7 @@ end
 
 local ALLOWED_MODELS = {
 	ModelPlug.GetListAsLookup("Wire_dynamic_button_Models"),
-	ModelPlug.GetListAsLookup("Wire_bdynamic_button_small_Models")
+	ModelPlug.GetListAsLookup("Wire_dynamic_button_small_Models")
 }
 function TOOL:CanUseModel(model)
 	for _, tbl in ipairs(ALLOWED_MODELS) do
