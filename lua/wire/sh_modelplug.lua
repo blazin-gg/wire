@@ -3,7 +3,7 @@ ModelPlug = ModelPlug or {}
 
 function ModelPlug.GetListAsLookup(listName)
 	local lookup = {}
-	for _, model in ipairs(list.Get(listName)) do
+	for model, _ in pairs(list.GetForEdit(listName)) do
 		lookup[model] = true
 	end
 	return lookup
