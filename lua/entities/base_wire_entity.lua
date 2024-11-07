@@ -157,7 +157,11 @@ if CLIENT then
 		local name
 		if CPPI then
 			local owner = self:CPPIGetOwner()
-			name = string.format("(%s)", (owner and owner:IsPlayer()) and owner:GetName() or "World")
+			if owner == CPPI.CPPI_DEFER then
+				name = "(Fetching...)"
+			else
+				name = string.format("(%s)", (owner and owner:IsPlayer()) and owner:GetName() or "World")
+			end
 		else
 			name = "(" .. self:GetPlayerName() .. ")"
 		end
