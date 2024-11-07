@@ -81,10 +81,12 @@ if CLIENT then
 
 			local results = {}
 			for action,gate in pairs( GateActions ) do
-				local name = gate.name
-				local lowname = string_lower(name)
-				if string_find( lowname, text, 1, true ) then -- If it has ANY match at all
-					results[#results+1] = { name = gate.name, group = gate.group, action = action, dist = WireLib.levenshtein( text, lowname ), description = gate.description }
+				if hook.Run("Wire_CanUseGate", LocalPlayer(), action, gate) ~= false then
+					local name = gate.name
+					local lowname = string_lower(name)
+					if string_find( lowname, text, 1, true ) then -- If it has ANY match at all
+						results[#results+1] = { name = gate.name, group = gate.group, action = action, dist = WireLib.levenshtein( text, lowname ), description = gate.description }
+					end
 				end
 			end
 
@@ -337,4 +339,4 @@ end
 local ALLOWED_MODELS = ModelPlug.GetListAsLookup("Wire_gate_Models")
 function TOOL:CanUseModel(model)
 	return ALLOWED_MODELS[model]
-end
+end

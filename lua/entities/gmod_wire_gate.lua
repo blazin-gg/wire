@@ -221,6 +221,9 @@ function WireLib.MakeWireGate(pl, Pos, Ang, model, action, noclip, frozen, nocol
 	if not GateActions[action] then return end
 	if GateActions[action].is_banned then return end
 
-	return WireLib.MakeWireEnt(pl, { Class = "gmod_wire_gate", Pos=Pos, Angle=Ang, Model=model }, action, noclip)
+	if hook.Run("Wire_CanUseGate", pl, action, GateActions[action]) ~= false then
+		return WireLib.MakeWireEnt(pl, { Class = "gmod_wire_gate", Pos=Pos, Angle=Ang, Model=model }, action, noclip)
+	end
+	return false
 end
 duplicator.RegisterEntityClass("gmod_wire_gate", WireLib.MakeWireGate, "Pos", "Ang", "Model", "action", "noclip")
