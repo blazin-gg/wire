@@ -37,8 +37,9 @@ if SERVER then
 	end
 end
 
+local ALLOWED_MODEL = "models/props_lab/keypad.mdl"
 TOOL.ClientConVar = {
-	model = "models/props_lab/keypad.mdl",
+	model = ALLOWED_MODEL,
 	password = "",
 	secure = "0",
 	createflat = "1", -- The model needs this
@@ -50,7 +51,6 @@ function TOOL.BuildCPanel(panel)
 	panel:CheckBox("#tool.wire_keypad.secure", "wire_keypad_secure")
 end
 
-local ALLOWED_MODEL = "models/props_lab/keypad.mdl"
 function TOOL:CanUseModel(model)
-	return model = ALLOWED_MODEL
-end
+	return model == ALLOWED_MODEL
+end
