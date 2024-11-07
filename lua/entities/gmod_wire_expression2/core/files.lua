@@ -415,6 +415,7 @@ net.Receive("wire_expression2_file_upload", function(_, ply)
 					pfile.data = data
 					pfile.uploading = false
 					pfile.uploaded = true
+					hook.Run("Expression2_FileUploaded", ply, pfile)
 
 					file_execute(ply, pfile, FILE_OK)
 				end)
