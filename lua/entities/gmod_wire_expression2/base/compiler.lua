@@ -1629,7 +1629,7 @@ local CompileVisitors = {
 		end
 
 		local fn_data = self:Assert(self:GetFunction(data[1].value, types), "No such function: " .. name.value .. "(" .. table.concat(types, ", ") .. ")", name.trace)
-		local can_call, reason = hook.Run("Wire_E2_CanCall", name, args, types)
+		local can_call, reason = hook.Run("Expression2_CanCall", name, args, types)
 		if can_call == false then
 			self:Error("Cannot call (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
 
@@ -1712,7 +1712,7 @@ local CompileVisitors = {
 		local fn_data = self:Assert(self:GetFunction(name.value, types, meta_type), "No such method: " .. (meta_type or "void") .. ":" .. name.value .. "(" .. table.concat(types, ", ") .. ")", name.trace)
 		self.scope.data.ops = self.scope.data.ops + fn_data.cost
 
-		local can_call, reason = hook.Run("Wire_E2_CanMethodCall", name, meta, args, types)
+		local can_call, reason = hook.Run("Expression2_CanMethodCall", name, meta, args, types)
 		if can_call == false then
 			self:Error("Cannot call (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
 
