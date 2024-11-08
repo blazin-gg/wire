@@ -1629,9 +1629,9 @@ local CompileVisitors = {
 		end
 
 		local fn_data = self:Assert(self:GetFunction(data[1].value, types), "No such function: " .. name.value .. "(" .. table.concat(types, ", ") .. ")", name.trace)
-		local can_call, reason = hook.Run("Expression2_CanCall", name, args, types)
+		local can_call, reason = hook.Run("Expression2_CanUseFunction", name, args, types)
 		if can_call == false then
-			self:Error("Cannot call (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
+			self:Error("Cannot call function (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
 
 			return function(state) end, fn_data.ret and (fn_data.ret ~= "" and fn_data.ret or nil)
 		end
@@ -1712,9 +1712,9 @@ local CompileVisitors = {
 		local fn_data = self:Assert(self:GetFunction(name.value, types, meta_type), "No such method: " .. (meta_type or "void") .. ":" .. name.value .. "(" .. table.concat(types, ", ") .. ")", name.trace)
 		self.scope.data.ops = self.scope.data.ops + fn_data.cost
 
-		local can_call, reason = hook.Run("Expression2_CanMethodCall", name, meta, args, types)
+		local can_call, reason = hook.Run("Expression2_CanUseMethod", name, meta, args, types)
 		if can_call == false then
-			self:Error("Cannot call (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
+			self:Error("Cannot call method (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
 
 			return function(state) end, fn_data.ret and (fn_data.ret ~= "" and fn_data.ret or nil)
 		end
@@ -1927,6 +1927,13 @@ local CompileVisitors = {
 			params[i] = { param.name.value, type }
 		end
 
+		local can_call, reason = hook.Run("Expression2_CanUseEvent", name, params)
+		if can_call == false then
+			self:Error("Cannot listen (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
+
+			return nil
+		end
+
 		local event = self:Assert(E2Lib.Env.Events[name], "No such event exists: '" .. name .. "'", trace)
 		if #params > #event.args then
 			local extra_arg_types = {}
@@ -1998,6 +2005,13 @@ end
 ---@return boolean legacy
 ---@return boolean default
 function Compiler:GetOperator(variant, types, trace)
+	local can_call, reason = hook.Run("Expression2_CanUseOperator", variant, types)
+	if can_call == false then
+		self:Error("Cannot use operator (" .. variant .. ")" .. (reason and (": " .. reason) or ""), trace)
+
+		return DEFAULT_EQUALS, "n", false, true
+	end
+
 	local fn = wire_expression2_funcs["op:" .. variant .. "(" .. table.concat(types) .. ")"]
 	if fn then
 		self.scope.data.ops = self.scope.data.ops + (fn[4] or 2) + (fn.attributes.legacy and 1 or 0)
