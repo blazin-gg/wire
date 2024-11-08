@@ -101,12 +101,12 @@ end
 ---@param directives PPDirectives
 ---@param dvars table<string, true>?
 ---@param includes table<string, Node>?
-function Compiler.from(directives, dvars, includes)
+function Compiler.from(directives, dvars, includes, owner)
 	local global_scope = Scope.new()
 	return setmetatable({
 		persist = directives.persist, inputs = directives.inputs, outputs = directives.outputs, strict = directives.strict,
 		global_scope = global_scope, scope = global_scope, warnings = {}, registered_events = {}, user_functions = {}, user_methods = {},
-		delta_vars = dvars or {}, includes = includes or {}
+		delta_vars = dvars or {}, includes = includes or {}, owner = owner
 	}, Compiler)
 end
 
@@ -117,8 +117,8 @@ local BLOCKED_ARRAY_TYPES = E2Lib.blocked_array_types
 ---@param dvars table<string, boolean>
 ---@param includes table<string, Node>
 ---@return boolean ok, function|Error script, Compiler self
-function Compiler.Execute(ast, directives, dvars, includes)
-	local instance = Compiler.from(directives, dvars, includes)
+function Compiler.Execute(ast, directives, dvars, includes, owner)
+	local instance = Compiler.from(directives, dvars, includes, owner)
 	local ok, script = xpcall(Compiler.Process, E2Lib.errorHandler, instance, ast)
 	return ok, script, instance
 end
@@ -1629,7 +1629,7 @@ local CompileVisitors = {
 		end
 
 		local fn_data = self:Assert(self:GetFunction(data[1].value, types), "No such function: " .. name.value .. "(" .. table.concat(types, ", ") .. ")", name.trace)
-		local can_call, reason = hook.Run("Expression2_CanUseFunction", name, args, types)
+		local can_call, reason = hook.Run("Expression2_CanUseFunction", self.owner, name, args, types)
 		if can_call == false then
 			self:Error("Cannot call function (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
 
@@ -1712,7 +1712,7 @@ local CompileVisitors = {
 		local fn_data = self:Assert(self:GetFunction(name.value, types, meta_type), "No such method: " .. (meta_type or "void") .. ":" .. name.value .. "(" .. table.concat(types, ", ") .. ")", name.trace)
 		self.scope.data.ops = self.scope.data.ops + fn_data.cost
 
-		local can_call, reason = hook.Run("Expression2_CanUseMethod", name, meta, args, types)
+		local can_call, reason = hook.Run("Expression2_CanUseMethod", self.owner, name, args, types, meta)
 		if can_call == false then
 			self:Error("Cannot call method (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
 
@@ -1927,7 +1927,7 @@ local CompileVisitors = {
 			params[i] = { param.name.value, type }
 		end
 
-		local can_call, reason = hook.Run("Expression2_CanUseEvent", name, params)
+		local can_call, reason = hook.Run("Expression2_CanUseEvent", self.owner, name, params)
 		if can_call == false then
 			self:Error("Cannot listen (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
 
@@ -2005,7 +2005,7 @@ end
 ---@return boolean legacy
 ---@return boolean default
 function Compiler:GetOperator(variant, types, trace)
-	local can_call, reason = hook.Run("Expression2_CanUseOperator", variant, types)
+	local can_call, reason = hook.Run("Expression2_CanUseOperator", self.owner, variant, types)
 	if can_call == false then
 		self:Error("Cannot use operator (" .. variant .. ")" .. (reason and (": " .. reason) or ""), trace)
 

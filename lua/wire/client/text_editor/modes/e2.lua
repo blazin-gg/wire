@@ -6,7 +6,7 @@ local string_gsub = string.gsub
 local EDITOR = {
 	UseValidator = true,
 	Validator = function(editor,source,file)
-		return E2Lib.Validate(source)
+		return E2Lib.Validate(source, LocalPlayer())
 	end,
 	UseSoundBrowser = true,
 }

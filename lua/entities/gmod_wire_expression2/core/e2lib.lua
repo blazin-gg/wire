@@ -1400,7 +1400,7 @@ function E2Lib.compileScript(code, owner)
 	local status, tree, dvars = E2Lib.Parser.Execute(tokens)
 	if not status then return false, tree end
 
-	local status, script = E2Lib.Compiler.Execute(tree, directives, dvars, {})
+	local status, script = E2Lib.Compiler.Execute(tree, directives, dvars, {}, owner)
 	if not status then return false, script end
 
 	local ctx = RuntimeContext.builder()

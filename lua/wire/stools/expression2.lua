@@ -713,7 +713,7 @@ elseif CLIENT then
 		local err, includes, warnings
 
 		if e2_function_data_received then
-			err, includes, warnings = E2Lib.Validate(code)
+			err, includes, warnings = E2Lib.Validate(code, LocalPlayer())
 			if err and err[1] then
 				WireLib.AddNotify(err[1].message, NOTIFY_ERROR, 7, NOTIFYSOUND_ERROR1)
 				return
