@@ -1628,8 +1628,15 @@ local CompileVisitors = {
 			args[k], types[k] = self:CompileExpr(arg)
 		end
 
-		local arg_sig = table.concat(types)
 		local fn_data = self:Assert(self:GetFunction(data[1].value, types), "No such function: " .. name.value .. "(" .. table.concat(types, ", ") .. ")", name.trace)
+		local can_call, reason = hook.Run("Wire_E2_CanCall", name, args, types)
+		if can_call == false then
+			self:Error("Cannot call (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
+
+			return function(state) end, fn_data.ret and (fn_data.ret ~= "" and fn_data.ret or nil)
+		end
+
+		local arg_sig = table.concat(types)
 		self.scope.data.ops = self.scope.data.ops + fn_data.cost
 
 		self:AssertW(not (used_as_stmt and fn_data.attrs.nodiscard), "The return value of this function cannot be discarded", trace)
@@ -1704,6 +1711,13 @@ local CompileVisitors = {
 
 		local fn_data = self:Assert(self:GetFunction(name.value, types, meta_type), "No such method: " .. (meta_type or "void") .. ":" .. name.value .. "(" .. table.concat(types, ", ") .. ")", name.trace)
 		self.scope.data.ops = self.scope.data.ops + fn_data.cost
+
+		local can_call, reason = hook.Run("Wire_E2_CanMethodCall", name, meta, args, types)
+		if can_call == false then
+			self:Error("Cannot call (" .. name.value .. ")" .. (reason and (": " .. reason) or ""), trace)
+
+			return function(state) end, fn_data.ret and (fn_data.ret ~= "" and fn_data.ret or nil)
+		end
 
 		self:AssertW(not (used_as_stmt and fn_data.attrs.nodiscard), "The return value of this function cannot be discarded", trace)
 
