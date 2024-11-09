@@ -19,28 +19,34 @@ registerCallback("destruct",function(self)
 end)
 
 hook.Add("PlayerSay","Exp2TextReceiving", function(ply, text, teamchat)
-	local entry = { text, CurTime(), ply, teamchat }
-	TextList[ply:EntIndex()] = entry
-	TextList.last = entry
-
-	chatAuthor = ply
-	E2Lib.triggerEvent("chat", { ply, text, teamchat and 1 or 0 })
-
-	for e, _ in pairs(ChatAlert) do
-		if IsValid(e) then
-			e.context.data.runByChat = entry
-			e:Execute()
-			e.context.data.runByChat = nil
-		else
-			ChatAlert[e] = nil
+	local lowerText = text:lower()
+	local cmd = lowerText:sub(1, 4)
+	if cmd == "/e2 " or cmd == "!e2 " then
+		text = text:sub(5)
+	
+		local entry = { text, CurTime(), ply, teamchat }
+		TextList[ply:EntIndex()] = entry
+		TextList.last = entry
+	
+		chatAuthor = ply
+		E2Lib.triggerEvent("chat", { ply, text, teamchat and 1 or 0 })
+	
+		for e, _ in pairs(ChatAlert) do
+			if IsValid(e) then
+				e.context.data.runByChat = entry
+				e:Execute()
+				e.context.data.runByChat = nil
+			else
+				ChatAlert[e] = nil
+			end
 		end
+	
+		local hide, repl = 	chipHideChat, chipChatReplacement
+		chipHideChat, chipChatReplacement = nil, nil
+	
+		if hide then return "" end
+		return repl
 	end
-
-	local hide, repl = 	chipHideChat, chipChatReplacement
-	chipHideChat, chipChatReplacement = nil, nil
-
-	if hide then return "" end
-	return repl
 end)
 
 hook.Add("EntityRemoved","Exp2ChatPlayerDisconnect", function(ply)
