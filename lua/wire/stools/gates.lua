@@ -204,7 +204,7 @@ if CLIENT then
 			local allowed_gates = {}
 			local any_allowed = false
 			for k,v in pairs(gatefuncs) do
-				if not v.is_banned then
+				if not v.is_banned and hook.Run("Wire_CanUseGate", LocalPlayer(), k, v) ~= false then
 					allowed_gates[k] = v
 					any_allowed = true
 				end
