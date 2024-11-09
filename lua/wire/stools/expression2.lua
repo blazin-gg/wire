@@ -423,6 +423,7 @@ if SERVER then
 			end
 
 			local filepath = ret[3]
+			hook.Run("Expression2_ScriptUploaded", ply, code, includes, filepath, toent)
 
 			if ply ~= toent.player then
 				toent.player = ply
