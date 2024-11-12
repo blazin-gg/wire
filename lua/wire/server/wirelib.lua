@@ -1129,6 +1129,7 @@ function WireLib.MakeWireEnt( pl, Data, ... )
 	duplicator.DoGenericPhysics( ent, pl, Data ) -- Is deprecated, but is the only way to access duplicator.EntityPhysics.Load (its local)
 
 	ent:SetPlayer(pl)
+	ent:CPPISetOwner(pl)
 	if ent.Setup then ent:Setup(...) end
 
 	if IsValid(pl) then pl:AddCount( Data.Class:sub(6).."s", ent ) end

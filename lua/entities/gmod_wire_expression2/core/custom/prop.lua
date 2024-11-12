@@ -129,6 +129,7 @@ function PropCore.CreateProp(self, model, pos, angles, freeze, vehicleType)
 		prop:SetPos(pos)
 		prop:SetAngles(angles)
 		prop:SetVehicleClass(vehicleType)
+		prop:CPPISetOwner(self.player)
 
 		if self.data.propSpawnEffect then DoPropSpawnedEffect( prop ) end
 
@@ -346,6 +347,7 @@ function PropCore.CreateSent(self, class, pos, angles, freeze, data)
 				entity:SetAngles(angles)
 				entity:Spawn()
 				entity:Activate()
+				entity:CPPISetOwner(self.player)
 			end
 		end
 

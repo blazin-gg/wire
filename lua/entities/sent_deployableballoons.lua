@@ -50,6 +50,7 @@ local function MakeBalloonSpawner(pl, Data)
 	if not ent:IsValid() then return end
 	duplicator.DoGeneric(ent, Data)
 	ent:SetPlayer(pl)
+	ent:CPPISetOwner(pl)
 	ent:Spawn()
 	ent:Activate()
 
@@ -169,6 +170,7 @@ function ENT:DeployBalloons()
 	balloon:SetForce(self.force)
 	balloon:SetMaterial("models/balloon/balloon")
 	balloon:SetPlayer(self:GetPlayer())
+	balloon:CPPISetOwner(self:GetPlayer())
 	duplicator.DoGeneric(balloon,{Pos = self:GetPos() + (self:GetUp()*25)})
 	duplicator.DoGenericPhysics(balloon,pl,{Pos = Pos})
 

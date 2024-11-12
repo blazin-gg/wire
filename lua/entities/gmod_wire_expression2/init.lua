@@ -743,6 +743,7 @@ function MakeWireExpression2(player, Pos, Ang, model, buffer, name, inputs, outp
 	self:SetPos(Pos)
 	self:Spawn()
 	self:SetPlayer(player)
+	self:CPPISetOwner(player)
 	self.player = player
 	self:SetNWEntity("player", player)
 

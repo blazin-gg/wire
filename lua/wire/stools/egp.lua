@@ -29,6 +29,7 @@ if (SERVER) then
 
 		ent:SetPlayer(ply)
 		ent:SetEGPOwner( ply )
+		ent:CPPISetOwner(ply)
 
 		if IsValid(ply) then ply:AddCount( "wire_egps", ent ) end
 
@@ -404,4 +405,4 @@ end
 local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WireScreenModels")
 function TOOL:CanUseModel(model)
 	return ALLOWED_MODELS[model]
-end
+end
