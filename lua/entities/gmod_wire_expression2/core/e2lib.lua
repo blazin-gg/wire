@@ -474,7 +474,7 @@ else
 	function E2Lib.isOwner(self, entity)
 		local owner = E2Lib.getOwner(self, entity)
 		if not IsValid(owner) then return false end
-	
+
 		return E2Lib.isFriend(owner, self.player)
 	end
 end
@@ -954,8 +954,8 @@ do
 				if str then ply:PrintMessage( 2, str ) end
 				for i = 1, #extensions.prettyList do ply:PrintMessage( 2, extensions.prettyList[ i ] ) end
 			else
-				if str then print( str ) end
-				for i = 1, #extensions.prettyList do print( extensions.prettyList[ i ] ) end
+				-- if str then print( str ) end
+				-- for i = 1, #extensions.prettyList do print( extensions.prettyList[ i ] ) end
 			end
 		end
 

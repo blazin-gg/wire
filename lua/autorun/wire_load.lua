@@ -115,5 +115,3 @@ if CLIENT then
 	include("wire/client/rendertarget_fix.lua")
 	include("wire/client/customspawnmenu.lua")
 end
-
-if SERVER then print("Wiremod " .. select(2, WireLib.GetVersion()) .. " loaded") end
