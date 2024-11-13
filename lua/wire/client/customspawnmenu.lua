@@ -542,6 +542,14 @@ function PANEL:LoadToolsFromTable( inTable )
 			self:AddCategory( Name, Label, v )
 		end
 	end
+
+	-- Remove empty categories
+	for k, v in pairs( self.CategoryLookup ) do
+		if not v.ChildNodes or #v.ChildNodes:GetChildren() == 0 then
+			v:Remove()
+			self.CategoryLookup[k] = nil
+		end
+	end
 end
 
 -----------------------------------------------------------
@@ -569,6 +577,8 @@ function PANEL:AddCategory( Name, Label, tItems, CategoryID )
 				end
 			end
 		end
+
+		if hook.Run("Wire_ShouldShowTool", v) == false then continue end
 
 		local item = Category:AddNode( v.Text, icon )
 
