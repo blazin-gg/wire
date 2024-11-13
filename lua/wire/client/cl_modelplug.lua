@@ -63,11 +63,11 @@ local externalModels = {
 	{"WireTeleporterModels",		"models/props_c17/pottery03a.mdl"},
 	{"Wire_Keyboard_Models",		"models/props/kb_mouse/keyboard.mdl"},
 }
-for k, v in ipairs(externalModels) do
-	if file.Exists(v[2], "GAME") then
-		list.Set(v[1], v[2], true)
-	end
-end
+-- for k, v in ipairs(externalModels) do
+-- 	if file.Exists(v[2], "GAME") then
+-- 		list.Set(v[1], v[2], true)
+-- 	end
+-- end
 
 -- Everything else can just be added without checking if it exists
 
@@ -80,12 +80,9 @@ list.Set("Wire_beamcasting_Models", "models/jaanus/wiretool/wiretool_beamcaster.
 ModelPlug.ListAddModels("WireScreenModels", {
 	"models/props_lab/monitor01b.mdl",
 	"models/props_c17/tv_monitor01.mdl",
-	"models/blacknecro/tv_plasma_4_3.mdl",
 	"models/kobilica/wiremonitorbig.mdl",
 	"models/kobilica/wiremonitorsmall.mdl",
 	"models/cheeze/pcb/pcb0.mdl",
-	"models/cheeze/pcb/pcb1.mdl",
-	"models/cheeze/pcb/pcb2.mdl",
 	"models/cheeze/pcb/pcb3.mdl",
 	"models/cheeze/pcb/pcb4.mdl",
 	"models/cheeze/pcb/pcb6.mdl",
@@ -93,8 +90,6 @@ ModelPlug.ListAddModels("WireScreenModels", {
 	"models/cheeze/pcb/pcb7.mdl",
 	"models/cheeze/pcb/pcb8.mdl",
 	"models/cheeze/pcb2/pcb8.mdl",
-	"models/cheeze/pcb2/pcb1.mdl",
-	"models/cheeze/pcb2/pcb2.mdl",
 	"models/cheeze/pcb2/pcb3.mdl",
 	"models/cheeze/pcb2/pcb4.mdl",
 	"models/cheeze/pcb2/pcb5.mdl",
@@ -102,42 +97,8 @@ ModelPlug.ListAddModels("WireScreenModels", {
 	"models/cheeze/pcb2/pcb7.mdl",
 	"models/props_lab/monitor01a.mdl",
 	"models/props_lab/monitor02.mdl",
-	"models/props_lab/workspace002.mdl",
-	"models/props_lab/reciever01b.mdl",
-	"models/props_c17/consolebox05a.mdl",
-	"models/props_lab/reciever01c.mdl",
-	"models/props_lab/reciever01d.mdl",
-	"models/props_c17/consolebox01a.mdl",
-	"models/props_combine/combine_interface001.mdl",
-	"models/props_c17/cashregister01a.mdl",
-	"models/props_combine/combine_monitorbay.mdl",
-	"models/props_lab/workspace001.mdl",
-	"models/props_lab/citizenradio.mdl",
-	"models/props_lab/securitybank.mdl",
-	"models/beer/wiremod/gate_e2.mdl",
-	"models/beer/wiremod/targetfinder.mdl",
-	"models/bull/gates/microcontroller1.mdl",
-	"models/bull/gates/microcontroller2.mdl",
-	"models/jaanus/wiretool/wiretool_gate.mdl",
-	"models/jaanus/wiretool/wiretool_controlchip.mdl",
-	"models/props_lab/keypad.mdl",
-	"models/weapons/w_c4_planted.mdl",
-	"models/weapons/w_toolgun.mdl",
-	"models/xqm/panel1x1.mdl",
-	"models/xqm/panel1x2.mdl",
-	"models/xqm/box5s.mdl",
-	"models/props_lab/miniteleport.mdl",
-	"models/props_lab/plotter.mdl",
-	"models/props_combine/combine_interface002.mdl",
-	"models/props_combine/combine_interface003.mdl",
-	"models/props_combine/combine_intmonitor003.mdl",
-	"models/props_combine/combine_intmonitor001.mdl",
-	"models/props_lab/workspace003.mdl",
-	"models/props_lab/workspace004.mdl",
-	"models/props_lab/servers.mdl",
 	"models/props_phx/rt_screen.mdl",
 	"models/props_wasteland/controlroom_monitor001b.mdl",
-	"models/hunter/plates/plate025.mdl",
 	"models/hunter/plates/plate025x025.mdl",
 	"models/hunter/plates/plate025x05.mdl",
 	"models/hunter/plates/plate05x075.mdl",
@@ -145,15 +106,7 @@ ModelPlug.ListAddModels("WireScreenModels", {
 	"models/hunter/plates/plate1x1.mdl",
 	"models/hunter/plates/plate2x2.mdl",
 	"models/hunter/plates/plate4x4.mdl",
-	"models/hunter/plates/plate8x8.mdl",
 	"models/hunter/plates/plate05x05.mdl",
-	"models/hunter/blocks/cube1x1x1.mdl",
-	"models/props_lab/reciever01b.mdl",
-	"models/fasteroid/bull/lcd1.mdl",
-	"models/fasteroid/bull/lcd2.mdl",
-	"models/fasteroid/bull/lcd3.mdl",
-	"models/fasteroid/bull/lcd4.mdl",
-	"models/fasteroid/bull/lcd5.mdl",
 	"models/props_phx/construct/windows/window1x1.mdl"
 })
 
@@ -303,7 +256,6 @@ ModelPlug.ListAddModels("Wire_Explosive_Models", {
 	"models/props_junk/cardboard_box004a.mdl",
 	"models/props_junk/CinderBlock01a.mdl",
 	"models/props_junk/gascan001a.mdl",
-	"models/props_junk/TrafficCone001a.mdl",
 	"models/props_junk/metalgascan.mdl",
 	"models/props_junk/metal_paintcan001a.mdl",
 	"models/props_junk/wood_crate001a.mdl",
@@ -327,7 +279,6 @@ ModelPlug.ListAddModels("Wire_Value_Models", {
 	"models/bull/gates/transistor2.mdl",
 	"models/cheeze/wires/cpu.mdl",
 	"models/cheeze/wires/ram.mdl",
-	"models/cheeze/wires/nano_value.mdl"
 })
 
 ModelPlug.ListAddModels("WireTeleporterModels", {
@@ -366,7 +317,6 @@ ModelPlug.ListAddModels("Wire_Light_Models", {
 	"models/jaanus/wiretool/wiretool_siren.mdl",
 	"models/MaxOfS2D/light_tubular.mdl",
 	"models/fasteroid/led_mini.mdl"
-,	"models/fasteroid/led_nano.mdl"
 })
 
 ModelPlug.ListAddModels("Wire_Keyboard_Models",{
@@ -476,41 +426,22 @@ ModelPlug.ListAddModels("Wire_button_small_Models", {
 ModelPlug.ListAddModels("Wire_chip_Models", {
 	"models/bull/gates/capacitor.mdl",
 	"models/bull/gates/capacitor_mini.mdl",
-	"models/bull/gates/capacitor_nano.mdl",
 	"models/bull/gates/logic.mdl",
 	"models/bull/gates/logic_mini.mdl",
-	"models/bull/gates/logic_nano.mdl",
 	"models/bull/gates/microcontroller1.mdl",
 	"models/bull/gates/microcontroller1_mini.mdl",
-	"models/bull/gates/microcontroller1_nano.mdl",
 	"models/bull/gates/microcontroller2.mdl",
 	"models/bull/gates/microcontroller2_mini.mdl",
-	"models/bull/gates/microcontroller2_nano.mdl",
 	"models/bull/gates/processor.mdl",
 	"models/bull/gates/processor_mini.mdl",
-	"models/bull/gates/processor_nano.mdl",
 	"models/bull/gates/resistor.mdl",
 	"models/bull/gates/resistor_mini.mdl",
-	"models/bull/gates/resistor_nano.mdl",
 	"models/bull/gates/transistor1.mdl",
 	"models/bull/gates/transistor1_mini.mdl",
-	"models/bull/gates/transistor1_nano.mdl",
 	"models/bull/gates/transistor2.mdl",
 	"models/bull/gates/transistor2_mini.mdl",
-	"models/bull/gates/transistor2_nano.mdl",
-	"models/cheeze/wires/amd_test.mdl",
 	"models/cheeze/wires/cpu.mdl",
 	"models/cheeze/wires/cpu2.mdl",
-	"models/cheeze/wires/mini_chip.mdl",
-	"models/cheeze/wires/mini_cpu.mdl",
-	"models/cheeze/wires/nano_chip.mdl",
-	"models/cheeze/wires/nano_compare.mdl",
-	"models/cheeze/wires/nano_logic.mdl",
-	"models/cheeze/wires/nano_math.mdl",
-	"models/cheeze/wires/nano_memory.mdl",
-	"models/cheeze/wires/nano_select.mdl",
-	"models/cheeze/wires/nano_timer.mdl",
-	"models/cheeze/wires/nano_trig.mdl",
 	"models/cheeze/wires/ram.mdl",
 	"models/cyborgmatt/capacitor_large.mdl",
 	"models/cyborgmatt/capacitor_medium.mdl",
@@ -552,41 +483,24 @@ ModelPlug.ListAddModels("Wire_expr2_Models", {
 ModelPlug.ListAddModels("Wire_gate_Models", {
 	"models/bull/gates/capacitor.mdl",
 	"models/bull/gates/capacitor_mini.mdl",
-	"models/bull/gates/capacitor_nano.mdl",
 	"models/bull/gates/logic.mdl",
 	"models/bull/gates/logic_mini.mdl",
-	"models/bull/gates/logic_nano.mdl",
 	"models/bull/gates/microcontroller1.mdl",
 	"models/bull/gates/microcontroller1_mini.mdl",
-	"models/bull/gates/microcontroller1_nano.mdl",
 	"models/bull/gates/microcontroller2.mdl",
 	"models/bull/gates/microcontroller2_mini.mdl",
-	"models/bull/gates/microcontroller2_nano.mdl",
 	"models/bull/gates/processor.mdl",
 	"models/bull/gates/processor_mini.mdl",
-	"models/bull/gates/processor_nano.mdl",
 	"models/bull/gates/resistor.mdl",
 	"models/bull/gates/resistor_mini.mdl",
-	"models/bull/gates/resistor_nano.mdl",
 	"models/bull/gates/transistor1.mdl",
 	"models/bull/gates/transistor1_mini.mdl",
-	"models/bull/gates/transistor1_nano.mdl",
 	"models/bull/gates/transistor2.mdl",
 	"models/bull/gates/transistor2_mini.mdl",
-	"models/bull/gates/transistor2_nano.mdl",
-	"models/cheeze/wires/amd_test.mdl",
 	"models/cheeze/wires/cpu.mdl",
 	"models/cheeze/wires/cpu2.mdl",
 	"models/cheeze/wires/mini_chip.mdl",
 	"models/cheeze/wires/mini_cpu.mdl",
-	"models/cheeze/wires/nano_chip.mdl",
-	"models/cheeze/wires/nano_compare.mdl",
-	"models/cheeze/wires/nano_logic.mdl",
-	"models/cheeze/wires/nano_math.mdl",
-	"models/cheeze/wires/nano_memory.mdl",
-	"models/cheeze/wires/nano_select.mdl",
-	"models/cheeze/wires/nano_timer.mdl",
-	"models/cheeze/wires/nano_trig.mdl",
 	"models/cheeze/wires/ram.mdl",
 	"models/cyborgmatt/capacitor_large.mdl",
 	"models/cyborgmatt/capacitor_medium.mdl",
@@ -611,18 +525,12 @@ ModelPlug.ListAddModels("Wire_indicator_Models", {
 	"models/jaanus/wiretool/wiretool_pixel_sml.mdl",
 	"models/jaanus/wiretool/wiretool_range.mdl",
 	"models/jaanus/wiretool/wiretool_siren.mdl",
-	"models/led.mdl",
-	"models/led2.mdl",
-	"models/props_borealis/bluebarrel001.mdl",
 	"models/props_c17/clock01.mdl",
-	"models/props_c17/gravestone004a.mdl",
 	"models/props_junk/PopCan01a.mdl",
-	"models/props_junk/TrafficCone001a.mdl",
 	"models/props_trainstation/trainstation_clock001.mdl",
 	"models/segment.mdl",
 	"models/segment2.mdl",
 	"models/fasteroid/led_mini.mdl"
-,	"models/fasteroid/led_nano.mdl"
 })
 
 ModelPlug.ListAddModels("Wire_pixel_Models", {
@@ -631,13 +539,10 @@ ModelPlug.ListAddModels("Wire_pixel_Models", {
 	"models/jaanus/wiretool/wiretool_pixel_sml.mdl",
 	"models/jaanus/wiretool/wiretool_range.mdl",
 	"models/jaanus/wiretool/wiretool_siren.mdl",
-	"models/led.mdl",
-	"models/led2.mdl",
 	"models/props_junk/PopCan01a.mdl",
 	"models/segment.mdl",
 	"models/segment2.mdl",
 	"models/fasteroid/led_mini.mdl"
-,	"models/fasteroid/led_nano.mdl"
 })
 
 ModelPlug.ListAddModels("Wire_radio_Models", {
@@ -716,7 +621,6 @@ local CheezesButtons = {
 	"models/cheeze/buttons/button_stop.mdl",
 }
 for k,v in ipairs(CheezesButtons) do
-	list.Set( "ButtonModels", v, {} )
 	list.Set( "Wire_button_Models", v, true )
 end
 
@@ -733,6 +637,5 @@ local CheezesSmallButtons = {
 	"models/cheeze/buttons/button_9.mdl",
 }
 for k,v in ipairs(CheezesSmallButtons) do
-	list.Set( "ButtonModels", v, {} )
 	list.Set( "Wire_button_small_Models", v, true )
 end
