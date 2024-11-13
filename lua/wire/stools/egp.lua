@@ -19,7 +19,6 @@ if (SERVER) then
 	local function SpawnEnt( ply, Pos, Ang, model, class)
 		if IsValid(ply) and (not ply:CheckLimit("wire_egps")) then return false end
 		if not ply then ply = game.GetWorld() end -- For Garry's Map Saver
-		if model and not WireLib.CanModel(ply, model) then return false end
 		local ent = ents.Create(class)
 		if (model) then ent:SetModel(model) end
 		ent:SetAngles(Ang)
