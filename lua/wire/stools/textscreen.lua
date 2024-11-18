@@ -102,7 +102,7 @@ function TOOL.BuildCPanel(panel)
 		"Courier New",
 		"Times New Roman",
 		"ChatFont",
-		"Marlett",
+		"Rubik",
 		"Verdana",
 		"Tahoma",
 		"HalfLife2",
@@ -149,4 +149,4 @@ end
 local ALLOWED_MODELS = ModelPlug.GetListAsLookup("WireScreenModels")
 function TOOL:CanUseModel(model)
 	return ALLOWED_MODELS[model]
-end
+end
