@@ -1147,8 +1147,16 @@ e2function void entity:ragdollFreeze(isFrozen)
 
 end
 
-__e2setcost(150)
+__e2setcost(5)
+e2function angle entity:ragdollGetAng()
+	if not ValidAction(self, this) then return end
 
+	local phys = this:GetPhysicsObject()
+
+	return phys:IsValid() and phys:GetAngles() or self:throw("Tried to use entity without physics", Angle())
+end
+
+__e2setcost(150)
 e2function void entity:ragdollSetPos(vector pos)
 	if not ValidAction(self, this, "pos") then return end
 
@@ -1162,8 +1170,9 @@ end
 e2function void entity:ragdollSetAng(angle rot)
 	if not ValidAction(self, this, "rot") then return end
 
+	local o = this:GetPhysicsObject():GetAngles()
 	for _, bone in pairs(GetBones(this)) do
-		setAng(bone, bone:AlignAngles(this:GetForward():Angle(), rot))
+		setAng(bone, bone:AlignAngles(o, rot))
 	end
 
 	this:PhysWake()
