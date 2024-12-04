@@ -17,7 +17,7 @@ end
 
 TOOL.ClientConVar = {
 	model = "models/beer/wiremod/gate_e2.mdl",
-	modelsize = "",
+	-- modelsize = "",
 	scriptmodel = "",
 	select = "",
 	autoindent = 1
@@ -940,7 +940,7 @@ elseif CLIENT then
 	function TOOL.BuildCPanel(panel)
 		local w, h = panel:GetSize()
 
-		WireToolHelpers.MakeModelSizer(panel, "wire_expression2_modelsize")
+		-- WireToolHelpers.MakeModelSizer(panel, "wire_expression2_modelsize")
 		--[[
 		local ParentPanel = vgui.Create( "DPanel", panel )
 		ParentPanel:SetSize(w,h-40)

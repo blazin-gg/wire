@@ -413,8 +413,7 @@ if CLIENT then
 			Label = "Model Size",
 			Options = {
 				["normal"] = { [convar] = "" },
-				["mini"] = { [convar] = "mini" },
-				["nano"] = { [convar] = "nano" }
+				["mini"] = { [convar] = "mini" }
 			}
 		})
 	end
