@@ -19,11 +19,13 @@ registerCallback("destruct",function(self)
 end)
 
 hook.Add("PlayerSay","Exp2TextReceiving", function(ply, text, teamchat)
+	chipHideChat, chipChatReplacement = nil, nil
+	
 	local lowerText = text:lower()
 	local cmd = lowerText:sub(1, 4)
 	if cmd == "/e2 " or cmd == "!e2 " then
 		text = text:sub(5)
-	
+
 		local entry = { text, CurTime(), ply, teamchat }
 		TextList[ply:EntIndex()] = entry
 		TextList.last = entry
